@@ -40,7 +40,7 @@ function NavBar() {
                                     </ul>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link disabled active" href="/" tabindex="-1" aria-disabled="true">Blog</a>
+                                    <a className="nav-link disabled active" href="/" tabIndex="-1" aria-disabled="true">Blog</a>
                                 </li>
                                 <li className="nav-item ">
                                     <a className="nav-link active" href="/">Contact</a>
