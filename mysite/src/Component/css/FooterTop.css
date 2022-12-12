@@ -1,0 +1,25 @@
+.footertop{
+    background-color: #171613;
+}
+.social-media {
+    margin: 10px;
+}
+
+.social-media i {
+    color: gray;
+    margin-left: 30px;
+    font-size: large;
+    cursor: pointer;
+}
+.social-media i:hover{
+    color: blueviolet;
+}
+.footerinput input{
+    padding: 15px;
+    width: 350px;
+}
+.footerinput button{
+    padding: 16px;
+    margin-left: 4px;
+    margin-bottom: 4px;
+}

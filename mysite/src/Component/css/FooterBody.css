@@ -1,0 +1,25 @@
+.footerbody {
+    background-color: #171613;
+}
+.footerlogo a {
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+.footerlogo a i {
+    color: white;
+    background-color: orangered;
+    padding: 8px;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+.footerlogo a img {
+    height: 80px
+}
+.shopmen p{
+    color: #b2a48d;
+}
+.copyright p{
+    color: #b2a48d;
+}
