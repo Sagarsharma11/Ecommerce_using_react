@@ -1,25 +1,27 @@
-.Trending h4{
+.Youmaylike h4{
     float: left;
     margin-top: 10px;
     margin-left: 20px;
 }
-.Trending h4:first-of-type{
+.Youmaylike h4:first-of-type{
     border-bottom: 3px solid orangered ;
 }
-.Trending .owl-theme .item{
+.Youmaylike .owl-theme .item{
     position: relative;
 }
-.Trending .owl-theme .item img{
-    height: 350px;
+.Youmaylike .owl-theme .item img{
+    height: 300px;
+    width: 82%;
+    margin: auto;
     cursor: pointer;
 }
-.Trending .owl-theme .item span{
+.Youmaylike .owl-theme .item span{
     color: #CEBD9C;
 }
-.Trending .owl-theme .item p{
+.Youmaylike .owl-theme .item p{
     color: #8F8B87;
 }
-.Trending .owl-theme .item .add-to-cart{
+.Youmaylike .owl-theme .item .add-to-cart{
     height: 40px;
     width: 80px;
     background-color: white;
@@ -30,21 +32,17 @@
     display: block;
     
 }
-.Trending .owl-theme .item .add-to-cart div{
+.Youmaylike .owl-theme .item .add-to-cart div{
     float: left;
     height: 40px;
     width: 40px;
     cursor: pointer;
 }
-.Trending .owl-theme .item .add-to-cart div:first-of-type{
+.Youmaylike .owl-theme .item .add-to-cart div:first-of-type{
     border-right: 1px solid #8F8B87;
 }
 
-.Trending .owl-theme .item .add-to-cart div i {
+.Youmaylike .owl-theme .item .add-to-cart div i {
    margin-left: 10px;
    margin-top: 10px;
 }
-
-
-
-
