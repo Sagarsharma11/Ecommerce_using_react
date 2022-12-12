@@ -30,12 +30,28 @@ function Trending() {
                                 <p className='text-center'>Cashmera Tank + Bag</p>
                                 <p className='text-center'>$98.00 <span className='text-decoration-line-through mx-3'>$103.00</span> </p>
                             </div>
+                            <div className='add-to-cart'>
+                                <div>
+                                    <i className="fa-sharp fa-solid fa-cart-plus text-primary "></i>
+                                </div>
+                                <div>
+                                    <i className="fa-sharp fa-solid fa-bag-shopping text-success"></i>
+                                </div>
+                            </div>
                         </div>
                         <div className='item'>
                             <img src={require('./image/trend2.jpg')} className="d-block w-100" alt="..." />
                             <div className='my-3'>
                                 <p className='text-center'>Cashmera Tank + Bag</p>
                                 <p className='text-center'>$98.00 <span className='text-decoration-line-through mx-3'>$103.00</span> </p>
+                            </div>
+                            <div className='add-to-cart'>
+                                <div>
+                                    <i className="fa-sharp fa-solid fa-cart-plus text-primary "></i>
+                                </div>
+                                <div>
+                                    <i className="fa-sharp fa-solid fa-bag-shopping text-success"></i>
+                                </div>
                             </div>
                         </div>
                         <div className='item'>
@@ -44,12 +60,28 @@ function Trending() {
                                 <p className='text-center'>Cashmera Tank + Bag</p>
                                 <p className='text-center'>$98.00 <span className='text-decoration-line-through mx-3'>$103.00</span> </p>
                             </div>
+                            <div className='add-to-cart'>
+                                <div>
+                                    <i className="fa-sharp fa-solid fa-cart-plus text-primary "></i>
+                                </div>
+                                <div>
+                                    <i className="fa-sharp fa-solid fa-bag-shopping text-success"></i>
+                                </div>
+                            </div>
                         </div>
                         <div className='item'>
                             <img src={require('./image/trend4.jpg')} className="d-block w-100" alt="..." />
                             <div className='my-3'>
                                 <p className='text-center'>Cashmera Tank + Bag</p>
                                 <p className='text-center'>$98.00 <span className='text-decoration-line-through mx-3'>$103.00</span> </p>
+                            </div>
+                            <div className='add-to-cart'>
+                                <div>
+                                    <i className="fa-sharp fa-solid fa-cart-plus text-primary "></i>
+                                </div>
+                                <div>
+                                    <i className="fa-sharp fa-solid fa-bag-shopping text-success"></i>
+                                </div>
                             </div>
                         </div>
                         <div className='item'>
@@ -58,8 +90,17 @@ function Trending() {
                                 <p className='text-center'>Cashmera Tank + Bag</p>
                                 <p className='text-center'>$98.00 <span className='text-decoration-line-through mx-3'>$103.00</span> </p>
                             </div>
+                            <div className='add-to-cart'>
+                                <div>
+                                    <i className="fa-sharp fa-solid fa-cart-plus text-primary "></i>
+                                </div>
+                                <div>
+                                    <i className="fa-sharp fa-solid fa-bag-shopping text-success"></i>
+                                </div>
+                            </div>
                         </div>
                     </OwlCarousel>
+
                 </div>
             </div>
         </>
