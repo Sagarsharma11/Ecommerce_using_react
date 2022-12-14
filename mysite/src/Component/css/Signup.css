@@ -1,0 +1,17 @@
+.mainform input{
+    width: 100%;
+    height: 50px;
+    padding: 20px;
+}
+.formheader .mainform h2{
+    font-weight: 900;
+}
+.mainform .formfooter p{
+    margin-top: 60px;
+}
+.mainform .formfooter button{
+    margin-top: 45px;
+    width: 50%;
+    height: 50px;
+    margin-left: 80px;
+}
