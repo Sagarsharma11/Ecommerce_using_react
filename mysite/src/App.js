@@ -6,19 +6,24 @@ import Trending from "./Component/Trending";
 import YouMayLike from "./Component/YouMayLike";
 import FooterTop from "./Component/FooterTop";
 import FooterBody from "./Component/FooterBody";
+import Signup from "./Component/Signup";
+import Login from "./Component/Login";
 
 function App() {
   return (
     <>
-      <NavbarHeader />
-      <NavBar />
-      <Banner />
-      <Trending />
-      <YouMayLike />
-      <FooterTop />
-      <FooterBody />
+      <Login />
     </>
   );
 }
 
 export default App;
+
+//  <Signup />
+// <NavbarHeader />
+// <NavBar />
+// <Banner />
+// <Trending />
+// <YouMayLike />
+// <FooterTop />
+// <FooterBody />
