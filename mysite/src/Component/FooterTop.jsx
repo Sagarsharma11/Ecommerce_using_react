@@ -16,13 +16,13 @@ const FooterTop = () => {
               <input type="text" placeholder="Enter Your Email" />
               <button className="btn btn-danger">Subscribe</button>
             </div>
-            <di className="col-md-3 mt-5 ">
+            <div className="col-md-3 mt-5 ">
               <div className="social-media">
                 <i className="fa-brands fa-facebook"></i>
                 <i className="fa-brands fa-youtube"></i>
                 <i className="fa-brands fa-instagram"></i>
               </div>
-            </di>
+            </div>
           </div>
         </div>
         <div className="container">

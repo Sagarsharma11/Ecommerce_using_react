@@ -2,6 +2,7 @@
     list-style-type: none;
     float: left;
     margin-left: 40px;
+    cursor: pointer;
     color: gray;
 }
 .NavbarHeader .social-media{
@@ -11,5 +12,8 @@
 .NavbarHeader .social-media i{
     color: gray;
     margin-left: 30px;
+    animation: 3s infinite ;
 }
-
+.NavbarHeader .social-media i:hover{
+    color: red;
+}

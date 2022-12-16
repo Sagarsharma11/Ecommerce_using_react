@@ -1,29 +1,29 @@
 import "./App.css";
-import NavBar from "./Component/NavBar";
-import Banner from "./Component/Banner";
-import NavbarHeader from "./Component/NavbarHeader";
-import Trending from "./Component/Trending";
-import YouMayLike from "./Component/YouMayLike";
-import FooterTop from "./Component/FooterTop";
-import FooterBody from "./Component/FooterBody";
 import Signup from "./Component/Signup";
 import Login from "./Component/Login";
+import Home from "./Component/Home";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 function App() {
   return (
     <>
-      <Login />
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Login/>} />
+          <Route exact path="/signup" element={<Signup />} />
+          <Route exact path="/home" element={<Home/>} />
+        </Routes>
+      </Router>
+
     </>
   );
 }
 
 export default App;
 
-//  <Signup />
-// <NavbarHeader />
-// <NavBar />
-// <Banner />
-// <Trending />
-// <YouMayLike />
-// <FooterTop />
-// <FooterBody />
+//  
+
