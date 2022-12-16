@@ -8,7 +8,7 @@ const FooterBody = () => {
             <div className="col-md-2">
               <div className="footerlogo mt-5">
                 <a href="/">
-                  <i class="fa-sharp fa-solid fa-store"></i>
+                  <i className="fa-sharp fa-solid fa-store"></i>
                   <span className="fw-bold"> My</span>site
                 </a>
               </div>
