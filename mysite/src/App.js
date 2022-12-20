@@ -2,7 +2,8 @@ import "./App.css";
 import Signup from "./Component/Signup";
 import Login from "./Component/Login";
 import Home from "./Component/Home";
-import Admin from "./Admin/Admin";
+import Main from "./Dashbord/Main";
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -14,10 +15,10 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route exact path="/" element={<Login/>} />
+         <Route exact path="/" element={<Login/>} />
           <Route exact path="/signup" element={<Signup />} />
-          <Route exact path="/home" element={<Home/>} />
-          <Route exact path="/admin" element={<Admin/>}/>
+         <Route exact path="/home" element={<Home/>} />
+          <Route exact path="/admin" element={<Main/>}/>
         </Routes>
       </Router>
 
@@ -27,5 +28,5 @@ function App() {
 
 export default App;
 
-//  
+
 
