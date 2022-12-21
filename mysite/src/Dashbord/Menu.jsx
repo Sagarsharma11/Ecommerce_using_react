@@ -13,7 +13,7 @@ function Menu() {
                             <Link to="/admin"><i className="fa fa-dashboard"></i> <span>Dashboard</span></Link>
                         </li>
 						            <li>
-                            <Link to="/admin"><i className="fa fa-user-md"></i> <span>Add Product</span></Link>
+                            <Link to="/addproduct"><i className="fa fa-user-md"></i> <span>Add Product</span></Link>
                         </li>
                         <li>
                             <Link to="/admin"><i className="fa fa-wheelchair"></i> <span>Patients</span></Link>

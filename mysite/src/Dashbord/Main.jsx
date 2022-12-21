@@ -1,16 +1,16 @@
 import React from 'react'
-import Body from './Body'
-import Menu from './Menu'
 import TopHeader from './TopHeader'
+import Menu from './Menu'
+import DashMenu from './DashMenu'
 
 function Main() {
   return (
     <>
-    <div className="main-wrapper">
-        <TopHeader/>
+      <div className="main-wrapper">
+        <TopHeader />
         <Menu />
-        <Body/>
-    </div>
+        <DashMenu />
+      </div>
     </>
   )
 }
