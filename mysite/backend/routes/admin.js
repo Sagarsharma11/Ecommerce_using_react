@@ -7,7 +7,7 @@ const multer  = require('multer')
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, 'C:/Users/sagar/Desktop/Ecommerce_using_react/mysite/public/images')
+      cb(null, 'C:/Users/sagar/Desktop/Ecommerce_using_react/mysite/src/Component/image')
     },
     filename: function (req, file, cb) {
       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
@@ -33,6 +33,16 @@ router.post('/product' ,upload.single('productimage'), async(req,res)=>{
     } catch (error) {
         console.log(error)
         res.status(500).send({success:false,error:error})
+    }
+})
+
+router.post('/fetchProduct' , async(req,res)=>{
+    try{
+      const prod = await product.find();
+      res.status(200).send(prod)
+    }catch(e){
+      console.log("error",e)
+      res.status(500).send({success:false,error:error})
     }
 })
 
