@@ -1,10 +1,31 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './css/Trending.css'
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import axios from 'axios'
 
 function Trending() {
+    const [data, setData] = useState([])
+    useEffect(() => {
+        fetchData()
+    }, [1])
+
+
+    const fetchData = (e) => {
+        axios({
+            method: 'post',
+            url: 'http://localhost:5000/admin/fetchProduct'
+        })
+            .then((response) => {
+                setData(response.data)
+                console.log(response)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
 
     return (
         <>
@@ -23,83 +44,33 @@ function Trending() {
                     </div>
                 </div>
                 <div className='row'>
-                    <OwlCarousel className='owl-theme' loop margin={10} nav>
-                        <div className='item'>
-                            <img src={require('./image/trend1.jpg')} className="d-block w-100" alt="..." />
-                            <div className='my-3'>
-                                <p className='text-center'>Cashmera Tank + Bag</p>
-                                <p className='text-center'>$98.00 <span className='text-decoration-line-through mx-3'>$103.00</span> </p>
-                            </div>
-                            <div className='add-to-cart'>
-                                <div>
-                                    <i className="fa-sharp fa-solid fa-cart-plus text-primary "></i>
-                                </div>
-                                <div>
-                                    <i className="fa-sharp fa-solid fa-bag-shopping text-success"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='item'>
-                            <img src={require('./image/trend2.jpg')} className="d-block w-100" alt="..." />
-                            <div className='my-3'>
-                                <p className='text-center'>Cashmera Tank + Bag</p>
-                                <p className='text-center'>$98.00 <span className='text-decoration-line-through mx-3'>$103.00</span> </p>
-                            </div>
-                            <div className='add-to-cart'>
-                                <div>
-                                    <i className="fa-sharp fa-solid fa-cart-plus text-primary "></i>
-                                </div>
-                                <div>
-                                    <i className="fa-sharp fa-solid fa-bag-shopping text-success"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='item'>
-                            <img src={require('./image/trend3.jpg')} className="d-block w-100" alt="..." />
-                            <div className='my-3'>
-                                <p className='text-center'>Cashmera Tank + Bag</p>
-                                <p className='text-center'>$98.00 <span className='text-decoration-line-through mx-3'>$103.00</span> </p>
-                            </div>
-                            <div className='add-to-cart'>
-                                <div>
-                                    <i className="fa-sharp fa-solid fa-cart-plus text-primary "></i>
-                                </div>
-                                <div>
-                                    <i className="fa-sharp fa-solid fa-bag-shopping text-success"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='item'>
-                            <img src={require('./image/trend4.jpg')} className="d-block w-100" alt="..." />
-                            <div className='my-3'>
-                                <p className='text-center'>Cashmera Tank + Bag</p>
-                                <p className='text-center'>$98.00 <span className='text-decoration-line-through mx-3'>$103.00</span> </p>
-                            </div>
-                            <div className='add-to-cart'>
-                                <div>
-                                    <i className="fa-sharp fa-solid fa-cart-plus text-primary "></i>
-                                </div>
-                                <div>
-                                    <i className="fa-sharp fa-solid fa-bag-shopping text-success"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='item'>
-                            <img src={require('./image/trend5.jpg')} className="d-block w-100" alt="..." />
-                            <div className='my-3'>
-                                <p className='text-center'>Cashmera Tank + Bag</p>
-                                <p className='text-center'>$98.00 <span className='text-decoration-line-through mx-3'>$103.00</span> </p>
-                            </div>
-                            <div className='add-to-cart'>
-                                <div>
-                                    <i className="fa-sharp fa-solid fa-cart-plus text-primary "></i>
-                                </div>
-                                <div>
-                                    <i className="fa-sharp fa-solid fa-bag-shopping text-success"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </OwlCarousel>
+
+                    {data.length && <OwlCarousel className='owl-theme' loop={true} margin={10} nav>
+                        {data.map((e, key) => {
+                            return (
+                                <>
+                                    <div key={key} className='item'>
+                                        <img src={require(`./image/${e.productimage}`)} className="d-block w-100" alt="..." />
+                                        <div className='my-3'>
+                                            <p className='text-center'>{e.productname}</p>
+                                            <p className='text-center'>{e.productoffer} <span className='text-decoration-line-through mx-3'>{e.productprice}</span> </p>
+                                        </div>
+                                        <div className='add-to-cart'>
+                                            <div>
+                                                <i className="fa-sharp fa-solid fa-cart-plus text-primary "></i>
+                                            </div>
+                                            <div>
+                                                <i className="fa-sharp fa-solid fa-bag-shopping text-success"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </>)
+                        })} </OwlCarousel>
+                    }
+
+
+
 
                 </div>
             </div>

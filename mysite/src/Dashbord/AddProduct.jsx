@@ -25,7 +25,7 @@ function AddProduct() {
             method: 'post',
             url: 'http://localhost:5000/admin/product',
             data:formdata
-          }).then(e=>console.log("success", e.status==200?alert("success"):alert("not success")));
+          }).then(e=>console.log("success", e.status===200?alert("success"):alert("not success")));
         setProduct({
             productname:"",
             productprice:"",
