@@ -1,6 +1,6 @@
 import "./css/Login.css";
 import {useState} from 'react'
-import {Link, Navigate, useNavigate} from 'react-router-dom';
+import {Link,useNavigate} from 'react-router-dom';
 const Login = () => {
   const [login, setLogin] = useState({
     email:'',
@@ -16,7 +16,6 @@ const Login = () => {
       credentials: 'same-origin',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': localStorage.getItem("token")
       },
       redirect: 'follow',
       referrerPolicy: 'no-referrer',

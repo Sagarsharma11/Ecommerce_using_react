@@ -4,9 +4,9 @@
 }
 .Navbar a i {
     color: white;
-    background-color: orangered;
     padding: 8px;
-    border-radius: 20px;
+    margin-top: -10px;
+    border-radius: 20px;  
     text-decoration: none;
 }
 .Navbar a img{
