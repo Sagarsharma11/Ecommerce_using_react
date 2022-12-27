@@ -4,13 +4,20 @@ import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import axios from 'axios'
+import {useDispatch} from 'react-redux'
+import {add} from '../store/cartSlice'
 
-function Trending() {
+function Trending(props) {
+    const dispatch = useDispatch();
     const [data, setData] = useState([])
+
     useEffect(() => {
         fetchData()
-    }, [1])
+    }, [])
 
+    const clickHandle=(e)=>{
+        dispatch(add(e))
+    }
 
     const fetchData = (e) => {
         axios({
@@ -35,6 +42,9 @@ function Trending() {
                         <h1>
                             Trending This Week
                         </h1>
+                        <div>
+
+                        </div>
                     </div>
                     <div className='col-md-4 '>
                         <h4>Men</h4>
@@ -44,6 +54,7 @@ function Trending() {
                     </div>
                 </div>
                 <div className='row'>
+
 
                     {data.length && <OwlCarousel className='owl-theme' loop={true} margin={10} nav>
                         {data.map((e, key) => {
@@ -56,7 +67,7 @@ function Trending() {
                                             <p className='text-center'>{e.productoffer} <span className='text-decoration-line-through mx-3'>{e.productprice}</span> </p>
                                         </div>
                                         <div className='add-to-cart'>
-                                            <div>
+                                            <div onClick={()=>clickHandle(e)} >
                                                 <i className="fa-sharp fa-solid fa-cart-plus text-primary "></i>
                                             </div>
                                             <div>
@@ -69,13 +80,12 @@ function Trending() {
                         })} </OwlCarousel>
                     }
 
-
-
-
                 </div>
             </div>
         </>
     )
 }
+
+
 
 export default Trending

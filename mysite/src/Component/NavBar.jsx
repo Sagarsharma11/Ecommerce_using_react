@@ -1,7 +1,9 @@
 import React from 'react'
 import './css/Navbar.css'
+import { useSelector } from 'react-redux'
 
 function NavBar() {
+    const items = useSelector(state=>state.cart)
     return (
         <div className='container-fluid Navbar'>
             <div className='row'>
@@ -39,12 +41,17 @@ function NavBar() {
                                         <li><a className="dropdown-item" href="/">Something else here</a></li>
                                     </ul>
                                 </li>
-                                <li className="nav-item">
-                                    <a className="nav-link disabled active" href="/" tabIndex="-1" aria-disabled="true">Blog</a>
-                                </li>
                                 <li className="nav-item ">
                                     <a className="nav-link active" href="/">Contact</a>
                                 </li>
+                                <li className="nav-item">
+                                    <a className="nav-link disabled active" href="/" tabIndex="-1" aria-disabled="true">
+                                        Cart
+                                        <i class="fa-sharp fa-solid fa-cart-plus"></i>
+                                        {items.length}
+                                    </a>
+                                </li>
+                              
                             </ul>
                             <form className="d-flex ">
                                 <input className="form-control me-2 " type="search" placeholder="Search" aria-label="Search" />
