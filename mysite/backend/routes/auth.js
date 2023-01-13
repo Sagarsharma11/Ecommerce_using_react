@@ -7,6 +7,7 @@ const { body, validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 const user = require('../modules/user');
 const JWT_KEY = "hello@world"
+const middleware = require('./middleware')
 
 router.post('/', 
     [body('name', 'enter a valid name').isLength({ min: 3 }),
@@ -60,10 +61,11 @@ router.post('/',
         }
     })
 
-    router.get('/cart',async(req,res)=>{
+    router.post('/cart',middleware,async(req,res)=>{
         try {
             
-            const cart = {user_id:req.body.user_id,product_id:req.body.product_id};
+            const user_id = req.user.user.id;
+            const cart = {user_id:user_id,product_id:req.body.product_id};
             if(!cart)return res.status(500).send({success:false,msg:'something went wrong'})
             const result = await Cart.create(cart)
             if(!result)return res.status(500).send({success:false,msg:'something went wrong'})
@@ -74,10 +76,11 @@ router.post('/',
         }
     })
 
-    router.get('/mycart', async(req,res)=>{
-        try {
-            
-            const mycart_id = {user_id:req.body.user_id};
+    router.get('/mycart', middleware,async(req,res)=>{
+        try { 
+            const user_id = req.user.user.id;
+            const mycart_id = {user_id:user_id};
+            console.log(mycart_id)
              if(!mycart_id)return res.status(500).send({success:false,msg:'something went wrong'})
             const result = await Cart.find(mycart_id)
             if(!result)return res.status(500).send({success:false,msg:'something went wrong'})
@@ -87,14 +90,11 @@ router.post('/',
                 myitems.push(resu)
             }
             if(myitems.length===0)return res.status(500).send({success:true,msg:'Cart is empty'})
-            
-            // if(!result)return res.status(500).send({success:false,msg:'something went wrong'})
             res.send({success:true,msg:'cart added successfully', array:myitems})
         } catch (error) {
             console.log(error)
             res.status(500).send({success:false,error})
         }
     })
-
 
 module.exports = router
