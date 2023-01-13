@@ -17,6 +17,23 @@ function Trending(props) {
 
     const clickHandle=(e)=>{
         dispatch(add(e))
+        console.log(localStorage.getItem('auth-token'))
+        let config = {
+            'Content-Type': 'Application/json',
+            'auth-token' : localStorage.getItem('auth-token')
+        }
+        const payload = {
+            product_id:e._id
+        }
+        fetch(
+            'http://localhost:5000/user/cart',{
+            method:'POST',
+            headers: config,
+            body: JSON.stringify(payload)
+            }
+        )
+        .then(response => response.json())
+        .then(data => console.log(data));
     }
 
     const fetchData = (e) => {

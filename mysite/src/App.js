@@ -22,6 +22,7 @@ function App() {
          <Route exact path="/home" element={<Home/>} />
           <Route exact path="/admin" element={<Main/>}/>
           <Route exact path="/addproduct" element={<AddProduct/>}/>
+          {/* <Route exact path="/cart" element={<addtocart/>}/> */}
         </Routes>
      </Provider>
 
