@@ -4,36 +4,45 @@ import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import axios from 'axios'
-import {useDispatch} from 'react-redux'
-import {add} from '../store/cartSlice'
+import { useDispatch } from 'react-redux'
+import { add } from '../store/cartSlice'
+import { fetchproduct } from '../store/productSlice'
 
 function Trending(props) {
     const dispatch = useDispatch();
     const [data, setData] = useState([])
 
     useEffect(() => {
+        dispatch(fetchproduct())
         fetchData()
     }, [])
 
-    const clickHandle=(e)=>{
-        dispatch(add(e))
-        console.log(localStorage.getItem('auth-token'))
-        let config = {
-            'Content-Type': 'Application/json',
-            'auth-token' : localStorage.getItem('auth-token')
-        }
-        const payload = {
-            product_id:e._id
-        }
-        fetch(
-            'http://localhost:5000/user/cart',{
-            method:'POST',
-            headers: config,
-            body: JSON.stringify(payload)
+    const clickHandle = (e) => {
+        try {
+            dispatch(add(e))
+            let config = {
+                'Content-Type': 'Application/json',
+                'auth-token': localStorage.getItem('auth-token')
             }
-        )
-        .then(response => response.json())
-        .then(data => console.log(data));
+            const payload = {
+                product_id: e._id
+            }
+            fetch(
+                'http://localhost:5000/user/cart', {
+                method: 'POST',
+                headers: config,
+                body: JSON.stringify(payload)
+            }
+            )
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    dispatch(fetchproduct())
+                });
+        } catch (error) {
+            console.log(error)
+        }
+
     }
 
     const fetchData = (e) => {
@@ -84,7 +93,7 @@ function Trending(props) {
                                             <p className='text-center'>{e.productoffer} <span className='text-decoration-line-through mx-3'>{e.productprice}</span> </p>
                                         </div>
                                         <div className='add-to-cart'>
-                                            <div onClick={()=>clickHandle(e)} >
+                                            <div onClick={() => clickHandle(e)} >
                                                 <i className="fa-sharp fa-solid fa-cart-plus text-primary "></i>
                                             </div>
                                             <div>

@@ -5,7 +5,7 @@ const connectMongo = ()=>{
 
 mongoose.connect('mongodb://localhost:27017/ecommerce',()=>{
     console.log("Connected")
-});
+}).catch((e)=>console.log(e));
   
 }
 

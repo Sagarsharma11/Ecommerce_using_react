@@ -7,7 +7,9 @@ const { body, validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 const user = require('../modules/user');
 const JWT_KEY = "hello@world"
-const middleware = require('./middleware')
+const middleware = require('./middleware');
+const _ = require("underscore");
+const product = require('../modules/product');
 
 router.post('/', 
     [body('name', 'enter a valid name').isLength({ min: 3 }),
@@ -65,7 +67,10 @@ router.post('/',
         try {
             
             const user_id = req.user.user.id;
-            const cart = {user_id:user_id,product_id:req.body.product_id};
+            const product_id = req.body.product_id;
+            if(!product_id)return res.status(500).send({success:false,msg:'something went wrong'})
+            const cart = {user_id:user_id,product_id};
+            console.log(cart)
             if(!cart)return res.status(500).send({success:false,msg:'something went wrong'})
             const result = await Cart.create(cart)
             if(!result)return res.status(500).send({success:false,msg:'something went wrong'})
@@ -80,15 +85,12 @@ router.post('/',
         try { 
             const user_id = req.user.user.id;
             const mycart_id = {user_id:user_id};
-            console.log(mycart_id)
              if(!mycart_id)return res.status(500).send({success:false,msg:'something went wrong'})
-            const result = await Cart.find(mycart_id)
+            const result = await Cart.find(mycart_id,{product_id:1});
             if(!result)return res.status(500).send({success:false,msg:'something went wrong'})
-            var myitems = []
-            for(var i=0; i<result.length; i++){
-                var resu = await Product.findOne(result[i].product_id)
-                myitems.push(resu)
-            }
+            let product_id = _.pluck(result,"product_id");
+            var myitems = [];
+            myitems = await Product.find({_id:{$in: product_id}});
             if(myitems.length===0)return res.status(500).send({success:true,msg:'Cart is empty'})
             res.send({success:true,msg:'cart added successfully', array:myitems})
         } catch (error) {

@@ -3,8 +3,10 @@ import './css/Navbar.css'
 import { useSelector } from 'react-redux'
 import {Link}  from 'react-router-dom'
 
+
+
 function NavBar() {
-    const items = useSelector(state=>state.cart)
+    const items = useSelector(state=>state.product)
     return (
         <div className='container-fluid Navbar'>
             <div className='row'>
@@ -46,10 +48,10 @@ function NavBar() {
                                     <a className="nav-link active" href="/">Contact</a>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link disabled active" to={'/cart'} tabIndex="-1" aria-disabled="true">
+                                    <Link className="nav-link active" to={'/cart'} tabIndex="-1" >
                                         Cart
-                                        <i class="fa-sharp fa-solid fa-cart-plus"></i>
-                                        {items.length}
+                                        <i className="fa-sharp fa-solid fa-cart-plus"></i>
+                                        { items.data.length }
                                     </Link>
                                 </li>
                               
