@@ -19,7 +19,7 @@ function Trending(props) {
 
     const clickHandle = (e) => {
         try {
-            dispatch(add(e))
+         
             let config = {
                 'Content-Type': 'Application/json',
                 'auth-token': localStorage.getItem('auth-token')
@@ -52,7 +52,6 @@ function Trending(props) {
         })
             .then((response) => {
                 setData(response.data)
-                console.log(response)
             })
             .catch((error) => {
                 console.log(error)

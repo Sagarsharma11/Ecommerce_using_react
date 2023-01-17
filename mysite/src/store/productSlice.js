@@ -18,11 +18,11 @@ const productSlice = createSlice({
         },
         setStatus(state, action){
             state.status = action.payload
-        }
+        },
     }
 })
 
-export const {getMycart , setStatus} = productSlice.actions;
+export const {getMycart , setStatus, removeMyCart} = productSlice.actions;
 export default productSlice.reducer;
 
 //Thunks for async calls
@@ -54,3 +54,5 @@ export function fetchproduct() {
         }
     }
 }
+
+
