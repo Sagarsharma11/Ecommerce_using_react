@@ -10,7 +10,8 @@ const JWT_KEY = "hello@world"
 const middleware = require('./middleware');
 const _ = require("underscore");
 const product = require('../modules/product');
-
+const { object } = require('underscore');
+const ObjectId = require('mongodb').ObjectId
 router.post('/',
     [body('name', 'enter a valid name').isLength({ min: 3 }),
     body('email').isEmail(),
@@ -103,9 +104,9 @@ router.delete('/removeitem/:id', middleware, async (req, res) => {
     try {
         const user_id = req.user.user.id;
         const id = req.params.id
-        const response = await Cart.findById(id);
-        if (!response) return res.status(500).send({ success: false, msg: 'something went wrong' })
-        const result = await Cart.findByIdAndDelete(id)
+        const users = await Cart.find({user_id,product_id:id})
+        const result = await Cart.findByIdAndDelete({_id:users[0]._id})
+        console.log(result)
         if(!result) return res.status(500).send({ success: false, msg: 'something went wrong' })
         res.send({ success: true, msg: 'Item remove successfully'})
     } catch (error) {

@@ -51,7 +51,7 @@ function NavBar() {
                                     <Link className="nav-link active" to={'/cart'} tabIndex="-1" >
                                         Cart
                                         <i className="fa-sharp fa-solid fa-cart-plus"></i>
-                                        { items.data.length }
+                                        { items.data===undefined?'':items.data.length }
                                     </Link>
                                 </li>
                               

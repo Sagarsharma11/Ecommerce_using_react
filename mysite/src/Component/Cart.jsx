@@ -1,14 +1,41 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import NavbarHeader from "./NavbarHeader";
 import NavBar from "./NavBar";
 import FooterTop from "./FooterTop";
 import FooterBody from "./FooterBody";
 import { useSelector } from 'react-redux';
+import { remove } from '../store/cartSlice'
+import { fetchproduct,removeMyCart } from '../store/productSlice'
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 // import laptopImg from "./image/youmaylike1.jpg"
 
 function Cart() {
+    const dispatch = useDispatch()
+    const navigate = useNavigate();
+    useEffect(() => {
+        dispatch(fetchproduct())
+    }, [])
+    
     const cartitmes = useSelector(state => state.product)
     console.log('cartitems', cartitmes)
+    let totalValue = 0;
+    let discoutPrice = 0;
+
+    const removeCart = (id) =>{
+        let config = {
+            'Content-Type': 'Application/json',
+            'auth-token': localStorage.getItem('auth-token')
+        }
+        axios.delete(`http://localhost:5000/user/removeitem/${id}`,
+            {headers:config}
+        ).then((response)=>{
+            dispatch(fetchproduct())
+        })
+        .catch((error)=>console.log(error))
+        
+    }
     return (
         <>
             <NavbarHeader />
@@ -26,7 +53,9 @@ function Cart() {
                             </div>
                         </div>
                         {
-                            cartitmes.data.map((e) => {
+                            cartitmes.data!==undefined? cartitmes.data.map((e) => {
+                                totalValue+=e.productoffer
+                                discoutPrice+=e.productprice
                                 return <>
                                     <div className='ProductDetail bg-white mt-3 mb-'>
                                         <div className='row'>
@@ -56,13 +85,13 @@ function Cart() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className='col-md-3 p-2'><p><strong>SAVE FOR LATER</strong></p></div>
-                                            <div className='col-md-3 p-2'><p><strong>REMOVE</strong></p></div>
+                                            <div className='col-md-3 p-2 btn'><p><strong>SAVE FOR LATER</strong></p></div>
+                                            <div onClick={()=>removeCart(e._id)} className='col-md-3 p-2 btn'><p><strong>REMOVE</strong></p></div>
                                         </div>
                                     </div>
 
                                 </>
-                            })
+                            }): navigate("/home")
                         }
 
                     </div>
@@ -71,11 +100,11 @@ function Cart() {
                             <h4 className='p-1 ml-2 text-secondary'>PRICE DETAILS</h4><hr />
                             <div className='row'>
                                 <div className='col-md-6 '><p className='mx-2 p-2'>Price (6 items)</p></div>
-                                <div className='col-md-6'><p className='mx-5 p-2'>₹5,53,660</p></div>
+                                <div className='col-md-6'><p className='mx-5 p-2'>₹{discoutPrice}</p></div>
                             </div>
                             <div className='row'>
                                 <div className='col-md-6 '><p className='mx-2 p-2'>Discount</p></div>
-                                <div className='col-md-6'><p className='mx-5 p-2 text-success'>− ₹65,191</p></div>
+                                <div className='col-md-6'><p className='mx-5 p-2 text-success'>{Math.floor(discoutPrice-totalValue)} ₹</p></div>
                             </div>
                             <div className='row'>
                                 <div className='col-md-6 '><p className='mx-2 p-2'>Delivery Charges</p></div>
@@ -85,10 +114,10 @@ function Cart() {
 
                             <div className='row'>
                                 <div className='col-md-6 '><p className='mx-2 p-2'>Total Amount</p></div>
-                                <div className='col-md-6'><p className='mx-5 p-2 text-success'>₹4,88,469</p></div>
+                                <div className='col-md-6'><p className='mx-5 p-2 text-success'>₹{totalValue}</p></div>
                                 <p className='text-center'>------------------------------------------------------------------</p>
                             </div>
-                            <h4 className='text-success p-2 mx-2 mb-2'>You will save ₹65,191 on this order</h4>
+                            <h4 className='text-success p-2 mx-2 mb-2'>You will save {Math.floor(discoutPrice-totalValue)}₹ on this order</h4>
 
                         </div>
                     </div>
