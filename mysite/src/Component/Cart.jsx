@@ -8,18 +8,15 @@ import { remove } from '../store/cartSlice'
 import { fetchproduct,removeMyCart } from '../store/productSlice'
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
-// import laptopImg from "./image/youmaylike1.jpg"
 
 function Cart() {
     const dispatch = useDispatch()
-    const navigate = useNavigate();
     useEffect(() => {
         dispatch(fetchproduct())
     }, [])
     
     const cartitmes = useSelector(state => state.product)
-    console.log('cartitems', cartitmes)
+    // console.log('cartitems', cartitmes)
     let totalValue = 0;
     let discoutPrice = 0;
 
@@ -47,17 +44,17 @@ function Cart() {
                             <h4 className='text-center'>Add To Cart</h4>
                         </div>
                         <div className='AddressDetail bg-white p-3 mt-2'>
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-between">
+                            <div className="d-grid gap-2 d-md-flex justify-content-md-between">
                                 <h4 className='text-center'>From Saved Address</h4>
-                                <button class="btn btn-primary" type="button">Enter Delivery Pincode</button>
+                                <button className="btn btn-primary" type="button">Enter Delivery Pincode</button>
                             </div>
                         </div>
                         {
-                            cartitmes.data!==undefined? cartitmes.data.map((e) => {
+                            cartitmes.data===undefined || cartitmes.data.length === 0? '':cartitmes.data.array.map((e,i) => {
                                 totalValue+=e.productoffer
                                 discoutPrice+=e.productprice
                                 return <>
-                                    <div className='ProductDetail bg-white mt-3 mb-'>
+                                    <div key={i} className='ProductDetail bg-white mt-3 mb-'>
                                         <div className='row'>
                                             <div className='col-md-3'>
                                                 <img className='w-100' src={require(`./image/${e.productimage}`)} alt="AddToCartImage" />
@@ -77,11 +74,11 @@ function Cart() {
                                         </div>
                                         <div className='row ProductIncrement'>
                                             <div className='col-md-3'>
-                                                <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
-                                                    <div class="btn-group ml-4" role="group" aria-label="First group">
-                                                        <button type="button" class="btn btn-outline-secondary">+</button>
-                                                        <button type="button" class="btn btn-outline-secondary">2</button>
-                                                        <button type="button" class="btn btn-outline-secondary">-</button>
+                                                <div className="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+                                                    <div className="btn-group ml-4" role="group" aria-label="First group">
+                                                        <button type="button" className="btn btn-outline-secondary">+</button>
+                                                        <button type="button" className="btn btn-outline-secondary">{cartitmes.data.cartobject[e._id]}</button>
+                                                        <button type="button" className="btn btn-outline-secondary">-</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -91,7 +88,7 @@ function Cart() {
                                     </div>
 
                                 </>
-                            }): navigate("/home")
+                            }) 
                         }
 
                     </div>

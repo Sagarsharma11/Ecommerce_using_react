@@ -88,12 +88,18 @@ router.get('/mycart', middleware, async (req, res) => {
         const mycart_id = { user_id: user_id };
         if (!mycart_id) return res.status(500).send({ success: false, msg: 'something went wrong' })
         const result = await Cart.find(mycart_id, { product_id: 1 });
+        const cartlen = result.length
+        cartobject={}
+        result.forEach((ele,index)=>{
+            var temp = ele.product_id.toString()
+            cartobject[temp] = cartobject[temp] ? cartobject[temp]+1:1;
+        })
         if (!result) return res.status(500).send({ success: false, msg: 'something went wrong' })
         let product_id = _.pluck(result, "product_id");
         var myitems = [];
         myitems = await Product.find({ _id: { $in: product_id } });
         if (myitems.length === 0) return res.status(500).send({ success: true, msg: 'Cart is empty' })
-        res.send({ success: true, msg: 'cart added successfully', array: myitems })
+        res.send({ success: true, msg: 'cart added successfully', array: myitems, cartobject, cartlen })
     } catch (error) {
         console.log(error)
         res.status(500).send({ success: false, error })

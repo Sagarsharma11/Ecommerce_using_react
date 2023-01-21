@@ -43,8 +43,7 @@ export function fetchproduct() {
             )
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data.array,'data')
-                    dispatch(getMycart(data.array))
+                    dispatch(getMycart(data))
                 });
                 dispatch(setStatus(STATUS.IDLE))
 
