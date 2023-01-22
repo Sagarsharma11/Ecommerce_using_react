@@ -23,7 +23,9 @@ router.post('/product' ,upload.single('productimage'), async(req,res)=>{
             productname:req.body.productname,
             productimage:req.file.filename,
             productprice:req.body.productprice,
-            productoffer:req.body.productoffer       
+            productoffer:req.body.productoffer,    
+            productdec:req.body.productdec,   
+            productseller:req.body.productseller
         })
         if(!prod){
             res.status(500).send({success:false,error:"internal server error"})

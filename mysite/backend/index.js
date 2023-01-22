@@ -1,6 +1,7 @@
 const connectMongo =  require("./db")
 const express = require('express')
 var cors = require('cors')
+const { eventNames } = require("./modules/user")
 var app = express()
 app.use(express.json())
 app.use(cors())

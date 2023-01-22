@@ -18,6 +18,14 @@ const productSchema = new Schema({
         type:Number,
         required:true
     },
+    productdec:{
+        type:String,
+        required:true
+    },
+    productseller:{
+        type:String,
+        required:true
+    },
     Date:{
         type:Date,
         default:Date.now

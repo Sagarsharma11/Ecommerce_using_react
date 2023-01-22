@@ -71,13 +71,11 @@ router.post('/cart', middleware, async (req, res) => {
         const product_id = req.body.product_id;
         if (!product_id) return res.status(500).send({ success: false, msg: 'something went wrong' })
         const cart = { user_id: user_id, product_id };
-        console.log(cart)
         if (!cart) return res.status(500).send({ success: false, msg: 'something went wrong' })
         const result = await Cart.create(cart)
         if (!result) return res.status(500).send({ success: false, msg: 'something went wrong' })
         res.status(200).send({ success: true, msg: 'cart added successfully' })
     } catch (error) {
-        console.log(error)
         res.status(500).send({ success: false, error })
     }
 })
