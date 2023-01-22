@@ -7,6 +7,8 @@ import {Link}  from 'react-router-dom'
 
 function NavBar() {
     const items = useSelector(state=>state.product)
+ 
+    
     return (
         <div className='container-fluid Navbar'>
             <div className='row'>
@@ -22,7 +24,7 @@ function NavBar() {
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
                                 <li className="nav-item">
-                                    <a className="nav-link active" aria-current="page" href="/">Home</a>
+                                    <Link className="nav-link active" aria-current="page" href="/home">Home</Link> 
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link active" href="/">Men</a>

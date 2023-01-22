@@ -8,7 +8,9 @@ function AddProduct() {
         productname:"",
         productimage:"",
         productprice:"",
-        productoffer:""
+        productoffer:"",
+        productdec:"",
+        productseller:""
     })
     useEffect(() => {
         console.log("data has been sent")
@@ -21,6 +23,8 @@ function AddProduct() {
         formdata.append('productimage',product.productimage,product.productimage.name)
         formdata.append('productprice',product.productprice)
         formdata.append('productoffer',product.productoffer)
+        formdata.append('productdec',product.productdec)
+        formdata.append('productseller',product.productseller)
          axios({
             method: 'post',
             url: 'http://localhost:5000/admin/product',
@@ -29,11 +33,14 @@ function AddProduct() {
         setProduct({
             productname:"",
             productprice:"",
-            productoffer:""
+            productoffer:"",
+            productdec:"",
+            productseller:""
         })
     }
     const onChange=(e)=>{
         setProduct({...product,[e.target.name]:e.target.value})
+        console.log()
     }
     const onChangeImage=(e)=>{
         console.log("aaa")
@@ -66,6 +73,14 @@ function AddProduct() {
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputEmail1" className="form-label">Product Offer</label>
                                             <input value={product.productoffer} onChange={onChange} type="text" className="form-control" name="productoffer" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="exampleInputEmail1" className="form-label">Product description</label>
+                                            <input value={product.productdec} onChange={onChange} type="text" className="form-control" name="productdec" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="exampleInputEmail1" className="form-label">Product Seller</label>
+                                            <input value={product.productseller} onChange={onChange} type="text" className="form-control" name="productseller" id="exampleInputEmail1" aria-describedby="emailHelp" />
                                         </div>
                                         <button type="submit" className="btn btn-success">Add Product</button>
                                     </form>

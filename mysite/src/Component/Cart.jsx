@@ -61,8 +61,8 @@ function Cart() {
                                             </div>
                                             <div className='col-md-5 p-2'>
                                                 <h5>{e.productname}</h5>
-                                                <p>16.2 inch, Space Grey�, 2.2 kg</p>
-                                                <p>Seller:PETILANTE Online</p>
+                                                <p>{e.productdec}</p>
+                                                <p>Seller: {e.productseller}</p>
                                                
                                                 <p><s>₹{e.productprice}</s> <strong> ₹{e.productoffer}</strong> <span className='text-success'> {
                                                    Math.floor((e.productprice-e.productoffer)*100/e.productoffer)
